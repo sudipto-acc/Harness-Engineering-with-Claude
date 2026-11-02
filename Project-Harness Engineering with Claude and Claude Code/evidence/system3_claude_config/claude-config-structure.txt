@@ -1,0 +1,80 @@
+(listing of the System 3 solution configuration; frontmatter shown verbatim)
+
+== .claude/ file tree ==
+.claude/commands/review.md
+.claude/rules/api.md
+.claude/rules/react.md
+.claude/rules/tests.md
+.claude/skills/deploy-check/SKILL.md
+.claude/standards/api.md
+.claude/standards/database.md
+.claude/standards/frontend.md
+.claude/standards/testing.md
+
+== .claude/rules/api.md (frontmatter) ==
+---
+description: Conventions for Node.js API handlers
+paths:
+  - "src/api/**/*"
+---
+
+== .claude/rules/react.md (frontmatter) ==
+---
+description: Conventions for React components and pages
+paths:
+  - "src/components/**/*"
+  - "src/pages/**/*"
+---
+
+== .claude/rules/tests.md (frontmatter) ==
+---
+description: Conventions for test files (co-located *.test.ts and *.test.tsx)
+paths:
+  - "**/*.test.tsx"
+  - "**/*.test.ts"
+---
+
+== .claude/commands/review.md (frontmatter) ==
+---
+description: Run the e-commerce team's PR review checklist against a pull request or local diff
+argument-hint: <pr-number | "HEAD~1..HEAD" | path/to/file>
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git status:*)
+  - Bash(gh pr diff:*)
+  - Bash(gh pr view:*)
+  - Bash(gh pr checks:*)
+---
+
+== .claude/skills/deploy-check/SKILL.md (frontmatter) ==
+---
+name: deploy-check
+description: Run read-only pre-deployment validation in a forked sub-agent and report a single pass/fail summary back to the main session
+context: fork
+argument-hint: "[target-branch] (defaults to main)"
+allowed-tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git rev-parse:*)
+  - Bash(git ls-files:*)
+  - Bash(gh pr view:*)
+  - Bash(gh pr checks:*)
+---
+
+== CLAUDE.md: @-imports and scope table ==
+| **Project-level** | `./CLAUDE.md`, `.claude/standards/`, `.claude/rules/` | Conventions for *this* repo. Lives in git. Shared with the whole team. |
+| **User-level** | `~/.claude/CLAUDE.md`, `~/.claude/commands/`, `~/.claude/skills/` | Personal preferences. **Not shared via version control** — they stay on your laptop and never reach teammates. |
+| **Directory-level** | `path/CLAUDE.md` inside a subdir | Conventions narrower than the whole repo. We prefer `.claude/rules/` with glob `paths:` instead, so cross-cutting conventions (e.g. test files everywhere) work cleanly. |
+- @.claude/standards/frontend.md
+- @.claude/standards/api.md
+- @.claude/standards/database.md
+- @.claude/standards/testing.md

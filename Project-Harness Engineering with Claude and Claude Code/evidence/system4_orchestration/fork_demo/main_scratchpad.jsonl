@@ -1,0 +1,2 @@
+{"hypothesis_id":"H1-lot-contamination","evidence":"fork demo","conclusion":"Lot 2026-0430-B has a dielectric defect; quarantine the lot.","ts":"2026-11-01T09:36:18.670544Z"}
+{"hypothesis_id":"H2-test-station-drift","evidence":"fork demo","conclusion":"Bank C-7 probe contacts drifted; recalibrate before blaming the lot.","ts":"2026-11-01T09:36:18.670544Z"}

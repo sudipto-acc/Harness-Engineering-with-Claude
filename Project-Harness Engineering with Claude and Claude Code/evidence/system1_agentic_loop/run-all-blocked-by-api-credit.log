@@ -1,0 +1,7 @@
+$ python -m claims_intake.run --all
+run_dir: runs/20261101_093648
+[claim_01_kitchen_fire] policy=POL-1001 expected=routed
+Traceback (most recent call last):
+  [frames omitted: they contain local absolute paths. Call chain: claims_intake/run.py main() -> _run_one() -> claims_intake/loop.py run() -> client.messages.create() -> anthropic SDK request]
+anthropic.BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': '<redacted>'}
+[exit code: 1]

@@ -1,0 +1,9 @@
+$ python -c "from pathlib import Path; from retail_context import transcript, tokens; t = transcript.load(Path('data/transcript_48turns.json')); a = '\n\n'.join(x.render() for x in t.active_turns); print('token counter:', tokens.methodology()); print('baseline transcript tokens:', t.token_count); print('turns:', len(t.turns)); [print('segment', s.issue_id, s.status, 'turns %d-%d' % s.turn_range, 'tokens', tokens.count(s.text)) for s in t.segments]; print('active segment tokens (verbatim):', tokens.count(a))"
+# ANTHROPIC_API_KEY was hidden from this process, so the documented heuristic counter ran and no API call was made.
+token counter: len(text) / 3.8 heuristic (no API key available)
+baseline transcript tokens: 47144
+turns: 48
+segment refund resolved turns 1-14 tokens 13921
+segment subscription resolved turns 15-28 tokens 13693
+segment payment_update active turns 29-48 tokens 19527
+active segment tokens (verbatim): 19527

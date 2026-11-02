@@ -1,0 +1,21 @@
+$ python extras.py
+== warm tier (SQL pre-filter) ==
+warm-tier total rows: 40
+rows returned by defects_since(ts > 2026-04-01T00:00:00Z, limit=50): 17
+EXPLAIN QUERY PLAN: SEARCH defects USING INDEX idx_defects_ts (ts>?)
+== hot state size ==
+hot_state.json: 965 bytes (budget 5120)
+== crash recovery: resume vs fresh ==
+STALE_RESUME_THRESHOLD_MINUTES = 30
+incomplete manifest, last step 10 min ago: resume
+incomplete manifest, last step 45 min ago: fresh
+complete manifest, last step 5 min ago: fresh
+empty manifest: fresh
+== fork isolation ==
+fork_demo/forks/H1-lot-contamination/scratchpad.jsonl: 1 entry
+fork_demo/forks/H2-test-station-drift/scratchpad.jsonl: 1 entry
+base hot_state.json unchanged after forking: True
+H1-lot-contamination findings visible in the other fork: False
+H2-test-station-drift findings visible in the other fork: False
+merged main scratchpad: ['H1-lot-contamination', 'H2-test-station-drift']
+[exit code: 0]
